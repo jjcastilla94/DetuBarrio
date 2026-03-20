@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Detalle de Comercio - DeTuBarrio</title>
+
+    <!-- CSS compilado de SASS (Bootstrap personalizado) -->
+    <link rel="stylesheet" href="styles.css" />
+    
+    <!-- Carga de iconos de Bootstrap desde CDN -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+  </head>
+  <body class="bg-light">
+    <!-- 1. Barra de Navegación Superior (Navbar) -->
+    <nav class="navbar navbar-expand-lg navbar-custom sticky-top shadow-sm">
+      <div class="container-fluid container-xl">
+        <!-- Logo DetuBarrio -->
+        <a class="navbar-brand d-flex align-items-center fw-bold" href="home.html">
+          <img
+            src="images/logo_og.png"
+            alt="Logo"
+            class="me-2 rounded-2"
+            width="32"
+            height="32"
+            style="object-fit: cover"
+          />
+          <span style="color: var(--db-primary)">DetuBarrio</span>
+        </a>
+
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Elementos del menú -->
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-lg-center">
+            <li class="nav-item">
+              <a class="nav-link text-primary fw-medium" href="listado_comercio.html">Comercios</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-secondary" href="#">¿Qué es?</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-secondary" href="#">Contacto</a>
+            </li>
+            <!-- Iconos de Usuario y Favoritos -->
+            <li class="nav-item ms-lg-3">
+              <a class="nav-link" href="#"><i class="bi bi-heart fs-5"></i></a>
+            </li>
+            <li class="nav-item ms-lg-2">
+              <a
+                class="btn btn-sm rounded-pill btn-outline-secondary px-3"
+                href="gestion_usuario.html"
+              >
+                <i class="bi bi-person-circle me-1"></i> 1
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container py-4">
+      <!-- Imagen principal -->
+      <div class="mb-4">
+        <div class="position-relative">
+          <img
+            src="images/panaderia.png"
+            id="heroBanner"
+            class="hero-image w-100"
+            alt="Panadería El Trigal"
+          />
+          <div class="position-absolute bottom-0 start-0 w-100 text-white p-3">
+            <h3 class="mb-0" id="comercioNombre">Panadería El Trigal</h3>
+            <p class="mb-0 small" id="comercioCategoria">Panadería Artesanal</p>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <!-- COLUMNA IZQUIERDA -->
+        <div class="col-lg-8">
+          <!-- Sobre Nosotros -->
+          <div class="mb-4">
+            <h5>Sobre Nosotros</h5>
+            <p class="text-muted" id="comercioDescripcion">
+              Panadería El Trigal es un negocio familiar con más de 50 años de
+              historia, dedicado a la elaboración de pan y bollería de forma
+              artesanal. Nuestra misión es ofrecer productos de la máxima
+              calidad, utilizando ingredientes locales y recetas tradicionales
+              que han pasado de generación en generación.
+            </p>
+          </div>
+
+          <!-- Productos Estrella -->
+          <div class="mb-4">
+            <h5>Nuestros Productos Estrella</h5>
+
+            <div class="row g-3 mt-2" id="productosGrid">
+              <div class="col-md-6">
+                <div class="card product-card shadow-sm">
+                  <img
+                    src="images/panaderia_pan.png"
+                    class="card-img-top"
+                    alt=""
+                  />
+                  <div class="card-body">
+                    <h6 class="card-title">Pan de Masa Madre</h6>
+                    <p class="text-muted small">
+                      Hogaza artesana de fermentación lenta.
+                    </p>
+                    <p class="fw-bold">3,50€</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="card product-card shadow-sm">
+                  <img
+                    src="images/panaderia_cruasant.png"
+                    class="card-img-top"
+                    alt=""
+                  />
+                  <div class="card-body">
+                    <h6 class="card-title">Croissant de Mantequilla</h6>
+                    <p class="text-muted small">
+                      Elaborado con mantequilla francesa.
+                    </p>
+                    <p class="fw-bold">1,80€</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Opiniones -->
+          <div class="mb-4">
+            <h5>Opiniones de Clientes</h5>
+
+            <div class="d-flex align-items-center mt-2">
+              <h3 class="me-3 mb-0" id="ratingValue">4.5</h3>
+              <div>
+                ★★★★☆
+                <p class="text-muted small mb-0" id="ratingCount">124 opiniones</p>
+              </div>
+            </div>
+
+            <!-- Barras de rating -->
+            <div class="mt-3">
+              <!-- 5 estrellas -->
+              <div class="d-flex align-items-center">
+                <span class="me-2 small">5</span>
+                <div class="rating-bar flex-grow-1">
+                  <div class="rating-bar-fill" style="width: 70%"></div>
+                </div>
+                <span class="ms-2 small text-muted">70%</span>
+              </div>
+
+              <!-- 4 estrellas -->
+              <div class="d-flex align-items-center mt-2">
+                <span class="me-2 small">4</span>
+                <div class="rating-bar flex-grow-1">
+                  <div class="rating-bar-fill" style="width: 18%"></div>
+                </div>
+                <span class="ms-2 small text-muted">18%</span>
+              </div>
+
+              <!-- 3 estrellas -->
+              <div class="d-flex align-items-center mt-2">
+                <span class="me-2 small">3</span>
+                <div class="rating-bar flex-grow-1">
+                  <div class="rating-bar-fill" style="width: 5%"></div>
+                </div>
+                <span class="ms-2 small text-muted">5%</span>
+              </div>
+
+              <!-- 2 estrellas -->
+              <div class="d-flex align-items-center mt-2">
+                <span class="me-2 small">2</span>
+                <div class="rating-bar flex-grow-1">
+                  <div class="rating-bar-fill" style="width: 3%"></div>
+                </div>
+                <span class="ms-2 small text-muted">3%</span>
+              </div>
+
+              <!-- 1 estrella -->
+              <div class="d-flex align-items-center mt-2">
+                <span class="me-2 small">1</span>
+                <div class="rating-bar flex-grow-1">
+                  <div class="rating-bar-fill" style="width: 2%"></div>
+                </div>
+                <span class="ms-2 small text-muted">2%</span>
+              </div>
+            </div>
+
+            <div class="mt-4" id="resenasList"></div>
+
+            <div class="card shadow-sm border-0 mt-4">
+              <div class="card-body">
+                <h6 class="mb-3">Escribe tu reseña</h6>
+                <div id="resenaFeedback" class="alert d-none" role="alert"></div>
+                <form id="resenaForm" class="row g-3">
+                  <div class="col-md-6">
+                    <label for="resenaAutor" class="form-label">Tu nombre</label>
+                    <input type="text" class="form-control" id="resenaAutor" maxlength="100" required />
+                  </div>
+                  <div class="col-md-6">
+                    <label for="resenaEmail" class="form-label">Tu email</label>
+                    <input type="email" class="form-control" id="resenaEmail" maxlength="150" />
+                  </div>
+                  <div class="col-md-8">
+                    <label for="resenaTitulo" class="form-label">Título</label>
+                    <input type="text" class="form-control" id="resenaTitulo" maxlength="80" required />
+                  </div>
+                  <div class="col-md-4">
+                    <label for="resenaValoracion" class="form-label">Valoración</label>
+                    <select id="resenaValoracion" class="form-select" required>
+                      <option value="5">5 - Excelente</option>
+                      <option value="4">4 - Muy bien</option>
+                      <option value="3">3 - Correcto</option>
+                      <option value="2">2 - Mejorable</option>
+                      <option value="1">1 - Mala experiencia</option>
+                    </select>
+                  </div>
+                  <div class="col-12">
+                    <label for="resenaComentario" class="form-label">Comentario</label>
+                    <textarea id="resenaComentario" class="form-control" rows="3" maxlength="255"></textarea>
+                  </div>
+                  <div class="col-12">
+                    <button type="submit" class="btn btn-primary">
+                      Publicar reseña
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- COLUMNA DERECHA -->
+        <div class="col-lg-4">
+          <div class="card p-3 shadow-sm mb-3">
+            <button class="btn btn-primary w-100">Contactar ahora</button>
+          </div>
+
+          <div class="card p-3 shadow-sm mb-3">
+            <h6>Ubicación</h6>
+            <p class="text-muted small mb-1">📍 Calle del Pan, 123, 28080</p>
+            <p class="text-muted small">Madrid, España</p>
+
+            <img
+              src="images/panaderia_lugar.png"
+              class="w-100 rounded mb-3"
+              alt="Fachada"
+            />
+          </div>
+
+          <div class="card p-3 shadow-sm">
+            <h6>Horario</h6>
+            <p class="small mb-1" id="comercioHorario">Horario no disponible</p>
+            <p class="small mb-1" id="comercioDias">Días de apertura no disponibles</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer class="footer-custom">
+      <div class="container">
+        <div class="row g-4 justify-content-between">
+          <div class="col-lg-4 col-md-12">
+            <h5 class="mb-3">DetuBarrio</h5>
+            <p class="small text-white-50" style="max-width: 300px">
+              Conectando comunidades, un negocio a la vez.
+            </p>
+          </div>
+
+          <div class="col-lg-2 col-6">
+            <h6 class="mb-3">Navegación</h6>
+            <ul class="list-unstyled small d-flex flex-column gap-2">
+              <li><a href="#">Comercios</a></li>
+              <li><a href="#">¿Qué es?</a></li>
+              <li><a href="#">Contacto</a></li>
+            </ul>
+          </div>
+
+          <div class="col-lg-2 col-6">
+            <h6 class="mb-3">Legal</h6>
+            <ul class="list-unstyled small d-flex flex-column gap-2">
+              <li><a href="#">Términos y Condiciones</a></li>
+              <li><a href="#">Política de Privacidad</a></li>
+              <li><a href="#">FAQ</a></li>
+            </ul>
+          </div>
+
+          <div class="col-lg-2 col-12">
+            <h6 class="mb-3">Síguenos</h6>
+            <ul class="list-unstyled small d-flex flex-column gap-2">
+              <li><a href="#">FB</a></li>
+              <li><a href="#">IG</a></li>
+              <li><a href="#">TIK TOK</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="footer-divider text-center small text-white-50">
+          © 2024 DetuBarrio. Todos los derechos reservados.
+        </div>
+      </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="module" src="js/comercio-detalle.js"></script>
+  </body>
+</html>

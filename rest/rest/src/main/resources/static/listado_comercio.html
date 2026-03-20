@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DetuBarrio - Descubre los Comercios Locales</title>
+    <!-- Carga de CSS compilado SASS -->
+    <link
+      rel="stylesheet"
+      href="styles.css"
+    />
+    <!-- Carga de iconos de Bootstrap (para iconos de corazón, perfil, etc.) -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+
+    <!-- Estilos personalizados para el diseño (colores DetuBarrio y tipografía Inter) -->
+    <style>
+      :root {
+        --db-primary: #003366; /* Azul oscuro */
+        --db-secondary: #3a86ff; /* Azul brillante para botones */
+        --db-success: #28a745; /* Verde para 'Abierto' */
+        --db-danger: #dc3545; /* Rojo para 'Cerrado' */
+      }
+
+      body {
+        font-family: "Inter", sans-serif;
+        background-color: #f4f4f9; /* Color de fondo ligero */
+      }
+
+      /* Estilo para la barra de navegación */
+      .navbar-custom {
+        background-color: white;
+        border-bottom: 1px solid #e0e0e0;
+      }
+
+      .hero-image {
+        width: 100%;
+        height: 260px;
+        object-fit: cover;
+        border-radius: 8px;
+      }
+      .product-card img {
+        height: 130px;
+        object-fit: cover;
+      }
+      .rating-bar {
+        height: 6px;
+        background-color: #e0e0e0;
+        border-radius: 3px;
+      }
+      .rating-bar-fill {
+        height: 6px;
+        background-color: #1a73e8;
+        border-radius: 3px;
+      }
+
+      /* Estilo para el input de búsqueda (adaptado para el diseño) */
+      .search-bar .input-group-text {
+        border-radius: 12px 0 0 12px;
+        border-right: none;
+      }
+      .search-bar input.form-control {
+        border-radius: 0 12px 12px 0;
+        border-left: none;
+        padding-left: 0.5rem;
+      }
+
+      /* Estilo para las tarjetas de comercio */
+      .commerce-card {
+        transition: transform 0.2s, box-shadow 0.2s;
+        border-radius: 12px;
+        overflow: hidden;
+        border: none;
+      }
+      .commerce-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175) !important;
+      }
+
+      .card-img-top {
+        height: 150px;
+        object-fit: cover;
+      }
+
+      /* Estilo para los badges de estado */
+      .badge-status {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        padding: 0.4em 0.8em;
+        border-radius: 0.5rem;
+        font-size: 0.75rem;
+        font-weight: 600;
+      }
+
+      /* Botones de paginación personalizados (para que se parezcan a los de tu imagen) */
+      .page-link {
+        color: #495057;
+        border-radius: 6px;
+        margin: 0 4px;
+        border: 1px solid #e0e0e0;
+        transition: all 0.3s;
+      }
+      .page-item.active .page-link {
+        background-color: var(--db-secondary);
+        border-color: var(--db-secondary);
+        color: white;
+      }
+
+      .footer-custom {
+        background-color: #051928; /* Color azul oscuro profundo de la imagen */
+        color: #ffffff;
+        padding-top: 3rem;
+        padding-bottom: 2rem;
+      }
+
+      .footer-custom h5,
+      .footer-custom h6 {
+        color: #ffffff;
+        font-weight: 700; /* Texto en negrita */
+      }
+
+      .footer-custom a {
+        color: #b0b8c1; /* Gris claro para los textos */
+        transition: color 0.3s ease;
+        text-decoration: none;
+      }
+
+      .footer-custom a:hover {
+        color: #ffffff; /* Blanco al pasar el mouse */
+      }
+
+      .footer-divider {
+        border-top: 1px solid #1f3a52; /* Línea sutil azulada, no gris */
+        margin-top: 2rem;
+        padding-top: 2rem;
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-custom sticky-top shadow-sm">
+      <div class="container-fluid container-xl">
+        <!-- Logo DetuBarrio -->
+        <a class="navbar-brand d-flex align-items-center fw-bold" href="home.html">
+          <img
+            src="images/logo_og.png"
+            alt="Logo"
+            class="me-2 rounded-2"
+            width="32"
+            height="32"
+            style="object-fit: cover"
+          />
+          <span style="color: var(--db-primary)">DetuBarrio</span>
+        </a>
+
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Elementos del menú -->
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-lg-center">
+            <li class="nav-item">
+              <a class="nav-link text-primary fw-medium" href="listado_comercio.html">Comercios</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-secondary" href="#">¿Qué es?</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-secondary" href="#">Contacto</a>
+            </li>
+            <!-- Iconos de Usuario y Favoritos -->
+            <li class="nav-item ms-lg-3">
+              <a class="nav-link" href="#"><i class="bi bi-heart fs-5"></i></a>
+            </li>
+            <li class="nav-item ms-lg-2">
+              <a
+                class="btn btn-sm rounded-pill btn-outline-secondary px-3"
+                href="gestion_usuario.html"
+              >
+                <i class="bi bi-person-circle me-1"></i> 1
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- 2. Contenido Principal: Filtros y Resultados -->
+    <div class="container container-xl my-5">
+      <h1 class="display-6 fw-bold mb-2">
+        Descubre los Comercios de tu Barrio
+      </h1>
+      <p class="lead text-muted mb-4">
+        Encuentra todo lo que necesitas a la vuelta de la esquina.
+      </p>
+
+      <!-- Estructura principal de 2 columnas para escritorio (Filtros en col-lg-3, Resultados en col-lg-9) -->
+      <div class="row g-4">
+        <!-- Columna Izquierda: Filtros (Se colapsan en pantallas pequeñas) -->
+        <div class="col-12 col-lg-3">
+          <div class="card p-3 shadow-sm border-0 sticky-top" style="top: 20px; z-index: 100;">
+            <h5 class="fw-bold mb-3">Filtros</h5>
+
+            <!-- Toggle para móvil (muestra/oculta los filtros en pantallas pequeñas) -->
+            <button
+              class="btn btn-sm btn-outline-secondary d-lg-none mb-3"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#filterCollapse"
+              aria-expanded="false"
+              aria-controls="filterCollapse"
+            >
+              Mostrar/Ocultar Filtros
+            </button>
+
+            <!-- Contenido de los filtros (Colapsable en móvil) -->
+            <div class="collapse show d-lg-block" id="filterCollapse">
+              <!-- Filtro 1: Categoría (Acordeón) -->
+              <div class="accordion accordion-flush" id="accordionCategory">
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="headingCategory">
+                    <button
+                      class="accordion-button fw-medium"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#collapseCategory"
+                      aria-expanded="true"
+                      aria-controls="collapseCategory"
+                    >
+                      Categoría
+                    </button>
+                  </h2>
+                  <div
+                    id="collapseCategory"
+                    class="accordion-collapse collapse show"
+                    aria-labelledby="headingCategory"
+                    data-bs-parent="#accordionCategory"
+                  >
+                    <div class="accordion-body" id="categoriaFilters"></div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Más filtros (simplificados como placeholder) -->
+              <div class="accordion accordion-flush mt-3" id="accordionOthers">
+                <div class="accordion-item">
+                  <h2 class="accordion-header">
+                    <button
+                      class="accordion-button collapsed fw-medium"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#collapseDistancia"
+                      aria-expanded="false"
+                    >
+                      Distancia
+                    </button>
+                  </h2>
+                  <div
+                    id="collapseDistancia"
+                    class="accordion-collapse collapse"
+                  >
+                    <div class="accordion-body">Rango de 1km a 5km.</div>
+                  </div>
+                </div>
+                <div class="accordion-item">
+                  <h2 class="accordion-header">
+                    <button
+                      class="accordion-button collapsed fw-medium"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#collapseValoracion"
+                      aria-expanded="false"
+                    >
+                      Valoración
+                    </button>
+                  </h2>
+                  <div
+                    id="collapseValoracion"
+                    class="accordion-collapse collapse"
+                  >
+                    <div class="accordion-body">
+                      Solo mostrar 4 estrellas o más.
+                    </div>
+                  </div>
+                </div>
+                <div class="accordion-item">
+                  <h2 class="accordion-header">
+                    <button
+                      class="accordion-button collapsed fw-medium"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#collapseHorario"
+                      aria-expanded="false"
+                    >
+                      Horario
+                    </button>
+                  </h2>
+                  <div id="collapseHorario" class="accordion-collapse collapse">
+                    <div class="accordion-body">
+                      Solo comercios abiertos ahora.
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Botones de acción -->
+              <div class="d-grid gap-2 mt-4">
+                <button
+                  class="btn btn-primary rounded-3"
+                  style="
+                    background-color: var(--db-secondary);
+                    border-color: var(--db-secondary);
+                  "
+                >
+                  Aplicar Filtros
+                </button>
+                <button class="btn btn-outline-secondary rounded-3">
+                  Limpiar Filtros
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Columna Derecha: Resultados de Comercios -->
+        <div class="col-12 col-lg-9">
+          <!-- Barra de Búsqueda (Se repite para que sea visible sin desplazar la columna de filtros) -->
+          <div class="row justify-content-center mb-4">
+            <div class="col-12">
+              <div class="input-group search-bar shadow-sm">
+                <span
+                  class="input-group-text bg-white border-1 rounded-start-3"
+                  style="border-color: #e0e0e0 !important"
+                >
+                  <i class="bi bi-search"></i>
+                </span>
+                <input
+                  type="search"
+                  id="searchInput"
+                  class="form-control border-1 rounded-end-3"
+                  placeholder="Busca un comercio por nombre o palabra clave..."
+                  aria-label="Buscar comercio"
+                  style="border-color: #e0e0e0 !important"
+                />
+              </div>
+            </div>
+          </div>
+
+          <!-- Conteo y descripción -->
+          <p class="text-muted mb-4" id="resultsCount">Mostrando 0 comercios</p>
+
+          <!-- Tarjetas de Comercios (Grid Responsivo) -->
+          <div class="row g-4" id="comercioGrid">
+            <!-- Tarjeta de Comercio Ejemplo 1: El Sabor Casero -->
+            <div class="col-12 col-sm-6 col-md-4 col-xl-3">
+              <div class="card commerce-card shadow-sm">
+                <img
+                  src="images/sabor.png"
+                  class="card-img-top"
+                  alt="Imagen del Restaurante El Sabor Casero"
+                />
+                <span class="badge badge-status bg-success">Abierto</span>
+                <div class="card-body">
+                  <p
+                    class="card-text text-muted mb-1"
+                    style="font-size: 0.85rem"
+                  >
+                    Restaurante
+                  </p>
+                  <h5 class="card-title fw-bold mb-2">El Sabor Casero</h5>
+                  <div class="d-flex align-items-center mb-2">
+                    <i class="bi bi-star-fill text-warning me-1"></i>
+                    <span class="fw-medium" style="font-size: 0.95rem"
+                      >4.5</span
+                    >
+                    <span class="text-muted ms-1" style="font-size: 0.8rem"
+                      >(5.201)</span
+                    >
+                  </div>
+                  <div class="d-grid">
+                    <a
+                      href="#"
+                      class="btn btn-sm btn-primary rounded-3"
+                      style="
+                        background-color: var(--db-secondary);
+                        border-color: var(--db-secondary);
+                      "
+                      >Ver Detalles</a
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Tarjeta de Comercio Ejemplo 2: Panadería El Trigal (Cerrado) -->
+            <div class="col-12 col-sm-6 col-md-4 col-xl-3">
+              <div class="card commerce-card shadow-sm">
+                <img
+                  src="images/trigal.png"
+                  class="card-img-top"
+                  alt="Imagen de la Panadería El Trigal"
+                />
+                <span class="badge badge-status bg-danger">Cerrado</span>
+                <div class="card-body">
+                  <p
+                    class="card-text text-muted mb-1"
+                    style="font-size: 0.85rem"
+                  >
+                    Panadería
+                  </p>
+                  <h5 class="card-title fw-bold mb-2">El Trigal</h5>
+                  <div class="d-flex align-items-center mb-2">
+                    <i class="bi bi-star-fill text-warning me-1"></i>
+                    <span class="fw-medium" style="font-size: 0.95rem"
+                      >5.0</span
+                    >
+                    <span class="text-muted ms-1" style="font-size: 0.8rem"
+                      >(88)</span
+                    >
+                  </div>
+                  <div class="d-grid">
+                    <a
+                      href="comercio_individual.html"
+                      class="btn btn-sm btn-primary rounded-3"
+                      style="
+                        background-color: var(--db-secondary);
+                        border-color: var(--db-secondary);
+                      "
+                      >Ver Detalles</a
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Tarjeta de Comercio Ejemplo 3: Estilo Único -->
+            <div class="col-12 col-sm-6 col-md-4 col-xl-3">
+              <div class="card commerce-card shadow-sm">
+                <img
+                  src="images/estilo.png"
+                  class="card-img-top"
+                  alt="Imagen de la Peluquería Estilo Único"
+                />
+                <span class="badge badge-status bg-danger text-white"
+                  >Cerrado</span
+                >
+                <div class="card-body">
+                  <p
+                    class="card-text text-muted mb-1"
+                    style="font-size: 0.85rem"
+                  >
+                    Peluquería
+                  </p>
+                  <h5 class="card-title fw-bold mb-2">Estilo Único</h5>
+                  <div class="d-flex align-items-center mb-2">
+                    <i class="bi bi-star-fill text-warning me-1"></i>
+                    <span class="fw-medium" style="font-size: 0.95rem"
+                      >4.0</span
+                    >
+                    <span class="text-muted ms-1" style="font-size: 0.8rem"
+                      >(17)</span
+                    >
+                  </div>
+                  <div class="d-grid">
+                    <a
+                      href="#"
+                      class="btn btn-sm btn-primary rounded-3"
+                      style="
+                        background-color: var(--db-secondary);
+                        border-color: var(--db-secondary);
+                      "
+                      >Ver Detalles</a
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Tarjeta de Comercio Ejemplo 4: El Tornillo Feliz -->
+            <div class="col-12 col-sm-6 col-md-4 col-xl-3">
+              <div class="card commerce-card shadow-sm">
+                <img
+                  src="images/torfeliz.png"
+                  class="card-img-top"
+                  alt="Imagen de la Ferretería El Tornillo Feliz"
+                />
+                <span class="badge badge-status bg-success">Abierto</span>
+                <div class="card-body">
+                  <p
+                    class="card-text text-muted mb-1"
+                    style="font-size: 0.85rem"
+                  >
+                    Ferretería
+                  </p>
+                  <h5 class="card-title fw-bold mb-2">El Tornillo Feliz</h5>
+                  <div class="d-flex align-items-center mb-2">
+                    <i class="bi bi-star-fill text-warning me-1"></i>
+                    <span class="fw-medium" style="font-size: 0.95rem"
+                      >4.8</span
+                    >
+                    <span class="text-muted ms-1" style="font-size: 0.8rem"
+                      >(230)</span
+                    >
+                  </div>
+                  <div class="d-grid">
+                    <a
+                      href="#"
+                      class="btn btn-sm btn-primary rounded-3"
+                      style="
+                        background-color: var(--db-secondary);
+                        border-color: var(--db-secondary);
+                      "
+                      >Ver Detalles</a
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Paginación -->
+          <div class="row justify-content-center mt-5">
+            <div class="col-12">
+              <nav aria-label="Paginación de resultados">
+                <ul class="pagination justify-content-center flex-wrap">
+                  <li class="page-item disabled">
+                    <button class="page-link" aria-label="Anterior">
+                      <span aria-hidden="true">&laquo;</span>
+                    </button>
+                  </li>
+                  <li class="page-item active">
+                    <button class="page-link">1</button>
+                  </li>
+                  <li class="page-item">
+                    <button class="page-link">2</button>
+                  </li>
+                  <li class="page-item">
+                    <button class="page-link">3</button>
+                  </li>
+                  <li class="page-item disabled">
+                    <button class="page-link">...</button>
+                  </li>
+                  <li class="page-item">
+                    <button class="page-link">9</button>
+                  </li>
+                  <li class="page-item">
+                    <button class="page-link" aria-label="Siguiente">
+                      <span aria-hidden="true">&raquo;</span>
+                    </button>
+                  </li>
+                <button
+                  id="applyFiltersBtn"
+              </nav>
+            </div>
+          </div>
+        </div>
+        <!-- Fin de Columna de Resultados -->
+      </div>
+      <!-- Fin de Fila Principal -->
+    </div>
+                <button id="clearFiltersBtn" class="btn btn-outline-secondary rounded-3">
+    <footer class="footer-custom">
+      <div class="container">
+        <div class="row g-4 justify-content-between">
+          <div class="col-lg-4 col-md-12">
+            <h5 class="mb-3">DetuBarrio</h5>
+            <p class="small text-white-50" style="max-width: 300px">
+              Conectando comunidades, un negocio a la vez.
+            </p>
+          </div>
+
+          <div class="col-lg-2 col-6">
+            <h6 class="mb-3">Navegación</h6>
+            <ul class="list-unstyled small d-flex flex-column gap-2">
+              <li><a href="#">Comercios</a></li>
+              <li><a href="#">¿Qué es?</a></li>
+              <li><a href="#">Contacto</a></li>
+            </ul>
+          </div>
+
+          <div class="col-lg-2 col-6">
+            <h6 class="mb-3">Legal</h6>
+            <ul class="list-unstyled small d-flex flex-column gap-2">
+              <li><a href="#">Términos y Condiciones</a></li>
+              <li><a href="#">Política de Privacidad</a></li>
+              <li><a href="#">FAQ</a></li>
+            </ul>
+          </div>
+
+          <div class="col-lg-2 col-12">
+            <h6 class="mb-3">Síguenos</h6>
+            <ul class="list-unstyled small d-flex flex-column gap-2">
+              <li><a href="#">FB</a></li>
+              <li><a href="#">IG</a></li>
+              <li><a href="#">TIK TOK</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="footer-divider text-center small text-white-50">
+          © 2024 DetuBarrio. Todos los derechos reservados.
+        </div>
+      </div>
+    </footer>
+    <!-- Script de Bootstrap (requerido para los colapsables y la navegación) -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      xintegrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+    <script type="module" src="js/listado-comercios.js"></script>
+  </body>
+</html>
