@@ -95,7 +95,7 @@ En la raiz del workspace tienes `Script_corregido.sql` para referencia del model
 - El backend **no** carga estos scripts SQL automaticamente porque en `rest/rest/src/main/resources/application.properties` esta configurado `spring.sql.init.mode=never`.
 - En local se usa H2 en memoria (perfil `local`) y carga de datos semilla en Java (`DataSeederConfig`), por lo que el arranque **no depende** de `Script.sql` ni de `Script_corregido.sql`.
 
-## Siguientes mejoras recomendadas
+## Siguientes mejoras 
 
 ** Ahora mismo el desarrollo del proyecto esta en fase beta, es decir hay cierta parte funcional ya pero requiere de tiempo para pulir y desarrollar todo lo demas **
 
