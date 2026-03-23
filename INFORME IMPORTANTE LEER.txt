@@ -1,0 +1,24 @@
+DOCUMENTO INFORMATIVO SOBRE EL PROYECTO FINAL DETUBARRIO PARA ALEJANDRO RAMALLO,
+
+
+Este documento lo redacto meramente informativo sobre las actualizaciones que llevamos Alejandro Lopez y Alvaro Castilla sobre nuestro proyecto :
+
+- Esta hecha toda la documentación del proyecto en el pdf adjunto en la entrega con toda la info sobre las tareas mandadas en el modulo de Proyecto Intermodular.
+
+- Hemos creado el diagrama E/R que nos llevo algo mas de tiempo por tema de algunas dudas sobre ciertos temas pero ya esta todo claro y decidido e incluso por si quisiéramos implementar a futuro mas cosas.
+
+- La base de datos esta hecha y arreglada ya que hicimos varias pruebas de testeos pero estamos aun abiertos a cambiar algo de ultima hora ya que aun no implementamos persistencia de datos en el proyecto.
+
+- Ya empezamos con la fase de desarrollo del proyecto con una versión de una aplicación monolítica Spring Boot que integra frontend estático y backend API REST en un único servidor. Esta decisión facilita el despliegue, elimina problemas de CORS.
+Y eso vamos poco a poco cada semana implementando algo mas ya que estamos en la empresa y nos quita la mayor parte del tiempo y vamos semanalmente haciendo alguna reunión informal con algo de bebida xd para organizarnos y definir los puntos en proceso y siguientes a realizar.
+
+- Por lo comentado en el punto anterior, por si quieres hacer un seguimiento o echarle un vistazo trabajamos desde una organización en GitHub los dos conjuntamente pero para que tengas acceso y visibilidad al repo me lo clone en mi repositorio.
+Adjunto el enlace para que lo puedas ver y demás:
+
+
+ https://github.com/jjcastilla94/DetuBarrio.git
+
+
+- Posiblemente tras esto concertemos una reunión contigo para tratar algunos temas como nos comentaste que podemos ir por la tarde al centro y que veas algo mas en profundidad como va todo o si por algún caso algo no va por buen camino redirigirlo a tiempo, cualquier cosa que necesites saber o que te expliquemos en profundidad estamos en contacto,
+muchas gracias y un saludo.
+
